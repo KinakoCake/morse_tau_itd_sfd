@@ -1,20 +1,21 @@
 class Render{
-
-    void renderMorse(){
+    
+    void renderMorse() {
         if(morses.size()>0) {
-        for(int i = morses.size();i>0;i--) {
-            int num = morses.get(i - 1);
-                switch(num) {
-                case 0:
-                    ellipse(centerX+camPos, centerY, 400*zoomSize, 200*zoomSize);
-                    break;  
-                case 1:
-                    ellipse(centerX+camPos, centerY, 200*zoomSize, 200*zoomSize);
-                    break;  
-                default :
-                    println("[Error] "+"Unexpected numbers are in the variable");
+            for(int i = morses.size();i>0;i--) {
+                Morse m = morses.get(i - 1);
+                
+                
+                if(m.type == "short") {
+                    ellipse(m.x + camPos, m.y, m.w * zoomSize, m.h * zoomSize);
+                } else if(m.type == "long") {
+                    stroke(255);
+                    strokeWeight(50);
+                    
+                    line(m.x, m.y, m.x + m.w, m.y);
+                    noStroke();
+                }
             }
         }
-    }
     }
 }
